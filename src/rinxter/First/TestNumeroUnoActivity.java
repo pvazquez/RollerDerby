@@ -11,15 +11,15 @@ public class TestNumeroUnoActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Intent i =  new Intent(this, SecondScreenActivity.class);
+        setContentView(rinxter.First.R.layout.main);
         Button b = (Button) findViewById(rinxter.First.R.id.btn1);
         b.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
+				Intent i =  new Intent(getApplicationContext(), SecondScreenActivity.class);
 				startActivity(i);
 			}
         });
-        setContentView(rinxter.First.R.layout.main);
     }
 	
 }
