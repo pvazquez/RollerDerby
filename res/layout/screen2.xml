@@ -9,7 +9,7 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Small Text"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:scrollbars="vertical"/>
     

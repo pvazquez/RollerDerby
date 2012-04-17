@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 public class SecondScreenActivity extends Activity {
 	
+	ArrayList<Information> info = new ArrayList<Information>();
+	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -57,11 +59,20 @@ public class SecondScreenActivity extends Activity {
 	
 		try {
 			JSONObject myj = new JSONObject(al.get(0).substring(1));
-			Information info = new Information(myj);
-			ArrayList<String> names = info.names;
-			ArrayList<String> values = info.values;
-			for(int i = 0; i < values.size(); i++)
-				tv.append(values.get(i));
+			info.add(new Information(myj));
+			for(int i = 1; i < al.size()-1; i++)
+				info.add(new Information(new JSONObject(al.get(i))));
+			myj = new JSONObject(al.get(al.size()-1).substring(0, al.get(al.size()-1).length()-1));
+			info.add(new Information(myj));
+			for(String key : info.get(0).x.keySet())
+				tv.append(key + " ");
+			tv.append("\n");
+			for(int i = 0; i < info.size(); i++)
+			{
+				for(String key : info.get(0).x.keySet())
+					tv.append(info.get(i).getData(key) + " ");
+				tv.append("\n");
+			}	
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
