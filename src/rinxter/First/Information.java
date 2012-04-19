@@ -3,6 +3,7 @@ package rinxter.First;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +14,7 @@ import android.R.xml;
 public class Information {
 	
 
-	HashMap<String, String> x = new HashMap<String, String>();	
+	private HashMap<String, String> x = new HashMap<String, String>();	
 	
 	public Information(JSONObject data) throws JSONException
 	{
@@ -32,5 +33,21 @@ public class Information {
 	{
 		return x.get(key);
 	}
-
+	
+	public Set<String> getKeys()
+	{
+		return x.keySet();
+	}
+	
+	public String[] getDataArray()
+	{
+		int i = 0;
+		String data[] = null;
+		for(String key : x.keySet())
+		{
+			data[i] = x.get(key);
+			i++;
+		}
+		return data;
+	}
 }

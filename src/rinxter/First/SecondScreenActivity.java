@@ -19,6 +19,11 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class SecondScreenActivity extends Activity {
@@ -28,9 +33,10 @@ public class SecondScreenActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		super.setRequestedOrientation(0);
 		setContentView(rinxter.First.R.layout.screen2);
 		
-		TextView tv = (TextView) findViewById(rinxter.First.R.id.textView1);
+	//	TextView tv = (TextView) findViewById(rinxter.First.R.id.textView1);
 		ArrayList<String> al = null;
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request = new HttpGet();
@@ -64,20 +70,64 @@ public class SecondScreenActivity extends Activity {
 				info.add(new Information(new JSONObject(al.get(i))));
 			myj = new JSONObject(al.get(al.size()-1).substring(0, al.get(al.size()-1).length()-1));
 			info.add(new Information(myj));
-			for(String key : info.get(0).x.keySet())
-				tv.append(key + " ");
-			tv.append("\n");
+			for(String key : info.get(0).getKeys())
+	//			tv.append(key + " ");
+	//		tv.append("\n");
 			for(int i = 0; i < info.size(); i++)
 			{
-				for(String key : info.get(0).x.keySet())
-					tv.append(info.get(i).getData(key) + " ");
-				tv.append("\n");
+	//			for(String key : info.get(0).getKeys())
+	//				tv.append(info.get(i).getData(key) + " ");
+	//			tv.append("\n");
 			}	
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		
-	}
+		
+		/* Layout */
+		FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+		        ViewGroup.LayoutParams.FILL_PARENT,
+		        ViewGroup.LayoutParams.FILL_PARENT);
+		TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
+		        ViewGroup.LayoutParams.FILL_PARENT,
+		        ViewGroup.LayoutParams.FILL_PARENT,
+		        1.0f);
+		TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
+		        ViewGroup.LayoutParams.FILL_PARENT,
+		        ViewGroup.LayoutParams.FILL_PARENT,
+		        1.0f);
 
+		
+		TableLayout maintable = (TableLayout) findViewById(R.id.maintable);
+		maintable.setLayoutParams(lp);
+		for(int i = 0; i < info.size(); i++)
+		{
+			TableRow TR = new TableRow(this);
+            TR.setLayoutParams(rowLp);
+            if(i == 0)
+            {
+	            for(String key : info.get(i).getKeys())
+	            {
+	            	TextView tv = new TextView(this);
+	            	tv.setLayoutParams(cellLp);              
+	            	TR.addView(tv);
+	            	tv.setText(key);
+	            }
+            }
+            else
+            {
+            	for(String key: info.get(i).getKeys())
+            	{
+            		String z = info.get(i).getData(key);
+	            	TextView tv = new TextView(this);
+	            	tv.setLayoutParams(cellLp);              
+	            	TR.addView(tv);
+	            	tv.setText(z);
+            	}
+            	
+            }
+        	maintable.addView(TR);
+		}	
+	}
 }
 
