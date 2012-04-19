@@ -18,9 +18,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -35,13 +39,15 @@ public class SecondScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		super.setRequestedOrientation(0);
 		setContentView(rinxter.First.R.layout.screen2);
+		Intent i = getIntent();
+		Bundle x = i.getExtras();
+		URI access = (URI) x.get("URI");
 		
-	//	TextView tv = (TextView) findViewById(rinxter.First.R.id.textView1);
 		ArrayList<String> al = null;
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request = new HttpGet();
 		try {
-			request.setURI(new URI("http://rinxter.net/wftda/ds?type=boutList&leagueId=1&season=2011"));
+			request.setURI(access);
 			HttpResponse response = client.execute(request);
 			InputStream ips = response.getEntity().getContent();
 			BufferedReader buf = new BufferedReader(new InputStreamReader(ips, "UTF-8"));
@@ -55,8 +61,6 @@ public class SecondScreenActivity extends Activity {
 					break;
 				al.add(s);
 			}
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -66,19 +70,10 @@ public class SecondScreenActivity extends Activity {
 		try {
 			JSONObject myj = new JSONObject(al.get(0).substring(1));
 			info.add(new Information(myj));
-			for(int i = 1; i < al.size()-1; i++)
-				info.add(new Information(new JSONObject(al.get(i))));
+			for(int j = 1; j < al.size()-1; j++)
+				info.add(new Information(new JSONObject(al.get(j))));
 			myj = new JSONObject(al.get(al.size()-1).substring(0, al.get(al.size()-1).length()-1));
 			info.add(new Information(myj));
-			for(String key : info.get(0).getKeys())
-	//			tv.append(key + " ");
-	//		tv.append("\n");
-			for(int i = 0; i < info.size(); i++)
-			{
-	//			for(String key : info.get(0).getKeys())
-	//				tv.append(info.get(i).getData(key) + " ");
-	//			tv.append("\n");
-			}	
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -92,42 +87,64 @@ public class SecondScreenActivity extends Activity {
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        1.0f);
+		rowLp.setMargins(2, 1, 2, 1);
 		TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        1.0f);
-
+		cellLp.setMargins(2, 0, 2, 0);
 		
 		TableLayout maintable = (TableLayout) findViewById(R.id.maintable);
 		maintable.setLayoutParams(lp);
-		for(int i = 0; i < info.size(); i++)
+		for(int i1 = 0; i1 < info.size(); i1++)
 		{
 			TableRow TR = new TableRow(this);
+			TR.setBackgroundColor(Color.BLACK);
+			TR.setPadding(3, 1, 3, 1);
             TR.setLayoutParams(rowLp);
-            if(i == 0)
+            if(i1 == 0)
             {
-	            for(String key : info.get(i).getKeys())
+	            for(String key : info.get(i1).getKeys())
 	            {
 	            	TextView tv = new TextView(this);
 	            	tv.setLayoutParams(cellLp);              
 	            	TR.addView(tv);
+	            	tv.setPadding(2, 2, 2, 2);
+	            	tv.setBackgroundColor(Color.WHITE);
+	            	tv.setTextColor(Color.BLUE);
 	            	tv.setText(key);
 	            }
             }
             else
             {
-            	for(String key: info.get(i).getKeys())
+            	for(String key: info.get(i1).getKeys())
             	{
-            		String z = info.get(i).getData(key);
+            		String z = info.get(i1).getData(key);
 	            	TextView tv = new TextView(this);
 	            	tv.setLayoutParams(cellLp);              
 	            	TR.addView(tv);
 	            	tv.setText(z);
+	            	tv.setPadding(2, 2, 2, 2);
+	            	tv.setBackgroundColor(Color.WHITE);
+	            	tv.setTextColor(Color.BLACK);
             	}
             	
-            }
+            }     
         	maintable.addView(TR);
-		}	
+		}
+		TableRow TR = new TableRow(this);
+		TR.setLayoutParams(rowLp);
+		Button back = new Button(this);
+		back.setLayoutParams(cellLp);
+		back.setOnClickListener(new View.OnClickListener() {		
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		TR.addView(back);
+		maintable.addView(TR);
+		back.setText("Back");
 	}
 }
 

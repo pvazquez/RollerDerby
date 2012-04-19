@@ -15,9 +15,10 @@ public final class R {
         public static final int images=0x7f020001;
     }
     public static final class id {
-        public static final int btn1=0x7f050002;
+        public static final int bout_btn=0x7f050002;
         public static final int imgView=0x7f050001;
-        public static final int maintable=0x7f050003;
+        public static final int maintable=0x7f050004;
+        public static final int team_btn=0x7f050003;
         public static final int textView1=0x7f050000;
     }
     public static final class layout {
@@ -26,8 +27,9 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040001;
-        public static final int btn_text=0x7f040002;
+        public static final int bout_text=0x7f040002;
         public static final int entry_text=0x7f040003;
         public static final int hello=0x7f040000;
+        public static final int team_text=0x7f040004;
     }
 }
