@@ -36,6 +36,7 @@ public class SecondScreenActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		//gets the information from the website using a URI connection
 		super.onCreate(savedInstanceState);
 		super.setRequestedOrientation(0);
 		setContentView(rinxter.First.R.layout.screen2);
@@ -66,7 +67,7 @@ public class SecondScreenActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
+		//use for debugging and catching errors from JSON server
 		try {
 			JSONObject myj = new JSONObject(al.get(0).substring(1));
 			info.add(new Information(myj));
@@ -79,7 +80,7 @@ public class SecondScreenActivity extends Activity {
 		}
 		
 		
-		/* Layout */
+		/* Layout of the screen*/
 		FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        ViewGroup.LayoutParams.FILL_PARENT);
