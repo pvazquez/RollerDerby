@@ -17,7 +17,7 @@ public class TestNumeroUnoActivity extends Activity {
         setContentView(rinxter.First.R.layout.main);
         Button bout_btn = (Button) findViewById(rinxter.First.R.id.bout_btn);
         
-        
+        //button to enter the mobile app and retrieves data from bouts
         bout_btn.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -33,6 +33,7 @@ public class TestNumeroUnoActivity extends Activity {
 				startActivity(i);
 			}
         });
+        //retrieves data from each team
         Button team_btn = (Button) findViewById(R.id.team_btn);
         team_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
