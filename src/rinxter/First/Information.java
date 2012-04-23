@@ -9,13 +9,13 @@ import org.json.JSONObject;
 
 public class Information {
 	
-
+	//hashmap for more organization 
 	private HashMap<String, String> x = new HashMap<String, String>();	
 	
 	public Information(JSONObject data) throws JSONException
 	{
 
-
+		//connecting to the JSON server on website
 		JSONArray info_name = data.names();
 		JSONArray info_data = data.toJSONArray(info_name);
 		
@@ -29,6 +29,7 @@ public class Information {
 		}
 	}
 	
+	//returns the actual data from the website's server onto the screen
 	public String getData(String key)
 	{
 		return x.get(key);
