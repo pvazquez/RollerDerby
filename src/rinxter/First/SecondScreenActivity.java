@@ -67,7 +67,7 @@ public class SecondScreenActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//use for debugging and catching errors from JSON server
+		//getting data from an array of hash tables
 		try {
 			JSONObject myj = new JSONObject(al.get(0).substring(1));
 			info.add(new Information(myj));
