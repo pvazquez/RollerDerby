@@ -53,7 +53,7 @@ public class ProgramLayout2 extends Activity{
                     LayoutParams.WRAP_CONTENT));
             tr.addView(labelDate);
 /*
-            // Create a TextView to house the value of the after-tax income
+            // Create a TextView to house the values
             TextView valueTV = new TextView(this);
             valueTV.setId(current);
             valueTV.setText("$0");

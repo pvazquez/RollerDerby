@@ -9,12 +9,16 @@ import org.json.JSONObject;
 
 public class Information {
 	
-
+	//hashmap for more organization 
 	private HashMap<String, String> x = new HashMap<String, String>();	
 	
 	public Information(JSONObject data) throws JSONException
 	{
 
+<<<<<<< HEAD
+=======
+		//connecting to the JSON server on website
+>>>>>>> 38b0d81ab23f247d12bebe2dbb867e8861fd1faf
 		JSONArray info_name = data.names();
 		JSONArray info_data = data.toJSONArray(info_name);
 		
@@ -28,6 +32,7 @@ public class Information {
 		}
 	}
 	
+	//returns the actual data from the website's server onto the screen
 	public String getData(String key)
 	{
 		return x.get(key);

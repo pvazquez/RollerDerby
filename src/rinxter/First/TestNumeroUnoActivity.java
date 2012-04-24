@@ -16,8 +16,14 @@ public class TestNumeroUnoActivity extends Activity {
         super.onCreate(savedInstanceState);
         //super.setRequestedOrientation(0);
         setContentView(rinxter.First.R.layout.main);
+<<<<<<< HEAD
         
         Button bout_btn = (Button) findViewById(rinxter.First.R.id.bout_btn);        
+=======
+        Button bout_btn = (Button) findViewById(rinxter.First.R.id.bout_btn);
+        
+        //button to enter the mobile app and retrieves data from bouts
+>>>>>>> 38b0d81ab23f247d12bebe2dbb867e8861fd1faf
         bout_btn.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -33,7 +39,11 @@ public class TestNumeroUnoActivity extends Activity {
 				startActivity(i);
 			}
         });
+<<<<<<< HEAD
         
+=======
+        //retrieves data from each team
+>>>>>>> 38b0d81ab23f247d12bebe2dbb867e8861fd1faf
         Button team_btn = (Button) findViewById(R.id.team_btn);
         team_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
