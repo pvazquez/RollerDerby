@@ -65,7 +65,7 @@ public class TestNumeroUnoActivity extends Activity {
 			}
 		});
     }
-	
+	//selector for year/season for bouts
     public boolean onCreateOptionsMenu(Menu menu)
     {
     	menu.add(0, 0, 0, "Change Year");
@@ -86,7 +86,7 @@ public class TestNumeroUnoActivity extends Activity {
 		}
     	return true;
     }
-
+	//selector for seasons of the teams' bouts
 	private void chooseSeason() {
 		AlertDialog.Builder alb = new AlertDialog.Builder(this);
 		alb.setTitle("Select Season");
