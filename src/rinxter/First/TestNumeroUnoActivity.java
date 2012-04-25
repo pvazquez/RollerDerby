@@ -30,7 +30,6 @@ public class TestNumeroUnoActivity extends Activity {
         seasonTxt.setText(String.valueOf(season) + " Season");
         
         Button bout_btn = (Button) findViewById(rinxter.First.R.id.bout_btn);        
-        //button to enter the mobile app and retrieves data from bouts
         bout_btn.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -38,7 +37,6 @@ public class TestNumeroUnoActivity extends Activity {
 				try {
 					bouts = new URI("http://rinxter.net/wftda/ds?type=boutList&leagueId=1&season=" + String.valueOf(season));
 				} catch (URISyntaxException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				Intent i =  new Intent(getApplicationContext(), SecondScreenActivity.class);
@@ -92,11 +90,11 @@ public class TestNumeroUnoActivity extends Activity {
 	private void chooseSeason() {
 		AlertDialog.Builder alb = new AlertDialog.Builder(this);
 		alb.setTitle("Select Season");
-		int size = season - 2011;
+		int size = season - 1990;
 		final String choices[] = new String[size+1];
-		for(int i = 2011; i <= season; i++)
+		for(int i = 1990; i <= season; i++)
 		{
-			choices[i - 2011] = String.valueOf(i);
+			choices[i - 1990] = String.valueOf(i);
 		}
 		alb.setItems(choices, new DialogInterface.OnClickListener() {
 			@Override

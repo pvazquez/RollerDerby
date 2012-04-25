@@ -90,101 +90,120 @@ public class SecondScreenActivity extends Activity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
 		displayTable(info, extras);
 	}
 
 	private void displayTable(ArrayList<Information> info, Bundle extras) {
-		
-		String type = extras.getString("page");
-		
-		/* Layout of the screen */
-		FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-		        ViewGroup.LayoutParams.FILL_PARENT,
-		        ViewGroup.LayoutParams.FILL_PARENT);
-		TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
-		        ViewGroup.LayoutParams.FILL_PARENT,
-		        ViewGroup.LayoutParams.FILL_PARENT,
-		        1.0f);
-		rowLp.setMargins(2, 1, 2, 1);
-		TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
-		        ViewGroup.LayoutParams.FILL_PARENT,
-		        ViewGroup.LayoutParams.FILL_PARENT,
-		        1.0f);
-		cellLp.setMargins(2, 0, 2, 0);
-		
-		// Create First Row
-		TableLayout maintable = (TableLayout) findViewById(R.id.maintable);
-		maintable.setLayoutParams(lp);
-		TableRow firstRow = new TableRow(this);
-		firstRow.setBackgroundColor(Color.BLACK);
-		firstRow.setPadding(3, 1, 3, 1);
-        firstRow.setLayoutParams(rowLp);
-        for(String key : info.get(0).getKeys())
-        {
-          	TextView tv = new TextView(this);
-          	tv.setLayoutParams(cellLp);              
-            firstRow.addView(tv);
-           	tv.setPadding(2, 2, 2, 2);
-           	tv.setBackgroundColor(Color.WHITE);
-           	tv.setTextColor(Color.BLUE);
-           	tv.setText(key);
-        }
-        maintable.addView(firstRow);
-        
-        // Add Data To Table
-		for(int i = 0; i < info.size(); i++)
+		if(info.size() == 0 || info == null)
 		{
-			int count = 0;
-			TableRow TR = new TableRow(this);
-			TR.setBackgroundColor(Color.BLACK);
-			TR.setPadding(3, 1, 3, 1);
-            TR.setLayoutParams(rowLp);         
-            for(String key: info.get(i).getKeys())
-            {
-            	String z = info.get(i).getData(key);
-            	if(count == 0 && type.equals("bouts"))
-            	{
-            		Button b = new Button(this);
-            		b.setLayoutParams(cellLp);
-            		TR.addView(b);
-            		b.setText("View Bout Stats");
-            		try {
-						b.setOnClickListener(new boutClickListener(z, getApplicationContext(), this));
-					} catch (URISyntaxException e) {
-						e.printStackTrace();
-					}
-            	}
-            	else
-	            {
-	            	TextView tv = new TextView(this);
-		            tv.setLayoutParams(cellLp);              
-		            TR.addView(tv);
-		           	tv.setText(z);
-		           	tv.setPadding(2, 2, 2, 2);
-		           	tv.setBackgroundColor(Color.WHITE);
-		           	tv.setTextColor(Color.BLACK);
-	            }
-            	count++;
-            }
-        	maintable.addView(TR);
+			TableLayout maintable = (TableLayout) findViewById(R.id.maintable);
+			TableRow tr = new TableRow(this);
+			TableRow tr2 = new TableRow(this);
+			TextView tv = new TextView(this);
+			tv.setText("No Information Available For This");
+			Button b = new Button(this);
+			b.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
+			tr.addView(tv);
+			tr2.addView(b);
+			maintable.addView(tr);
+			maintable.addView(tr2);
 		}
-		
-		//Back Button
-		TableRow TR = new TableRow(this);
-		TR.setLayoutParams(rowLp);
-		Button back = new Button(this);
-		back.setLayoutParams(cellLp);
-		back.setOnClickListener(new View.OnClickListener() {		
-			@Override
-			public void onClick(View v) {
-				finish();
+		else
+		{
+			String type = extras.getString("page");
+			
+			/* Layout of the screen */
+			FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+			        ViewGroup.LayoutParams.FILL_PARENT,
+			        ViewGroup.LayoutParams.FILL_PARENT);
+			TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
+			        ViewGroup.LayoutParams.FILL_PARENT,
+			        ViewGroup.LayoutParams.FILL_PARENT,
+			        1.0f);
+			rowLp.setMargins(2, 1, 2, 1);
+			TableRow.LayoutParams cellLp = new TableRow.LayoutParams(
+			        ViewGroup.LayoutParams.FILL_PARENT,
+			        ViewGroup.LayoutParams.FILL_PARENT,
+			        1.0f);
+			cellLp.setMargins(2, 0, 2, 0);
+			
+			// Create First Row
+			TableLayout maintable = (TableLayout) findViewById(R.id.maintable);
+			maintable.setLayoutParams(lp);
+			TableRow firstRow = new TableRow(this);
+			firstRow.setBackgroundColor(Color.BLACK);
+			firstRow.setPadding(3, 1, 3, 1);
+	        firstRow.setLayoutParams(rowLp);
+	        for(String key : info.get(0).getKeys())
+	        {
+	          	TextView tv = new TextView(this);
+	          	tv.setLayoutParams(cellLp);              
+	            firstRow.addView(tv);
+	           	tv.setPadding(2, 2, 2, 2);
+	           	tv.setBackgroundColor(Color.WHITE);
+	           	tv.setTextColor(Color.BLUE);
+	           	tv.setText(key);
+	        }
+	        maintable.addView(firstRow);
+	        
+	        // Add Data To Table
+			for(int i = 0; i < info.size(); i++)
+			{
+				int count = 0;
+				TableRow TR = new TableRow(this);
+				TR.setBackgroundColor(Color.BLACK);
+				TR.setPadding(3, 1, 3, 1);
+	            TR.setLayoutParams(rowLp);         
+	            for(String key: info.get(i).getKeys())
+	            {
+	            	String z = info.get(i).getData(key);
+	            	if(count == 0 && type.equals("bouts"))
+	            	{
+	            		Button b = new Button(this);
+	            		b.setLayoutParams(cellLp);
+	            		TR.addView(b);
+	            		b.setText("View Bout Stats");
+	            		try {
+							b.setOnClickListener(new boutClickListener(z, getApplicationContext(), this));
+						} catch (URISyntaxException e) {
+							e.printStackTrace();
+						}
+	            	}
+	            	else
+		            {
+		            	TextView tv = new TextView(this);
+			            tv.setLayoutParams(cellLp);              
+			            TR.addView(tv);
+			           	tv.setText(z);
+			           	tv.setPadding(2, 2, 2, 2);
+			           	tv.setBackgroundColor(Color.WHITE);
+			           	tv.setTextColor(Color.BLACK);
+		            }
+	            	count++;
+	            }
+	        	maintable.addView(TR);
 			}
-		});
-		TR.addView(back);
-		maintable.addView(TR);
-		back.setText("Back");
-		
+			
+			//Back Button
+			TableRow TR = new TableRow(this);
+			TR.setLayoutParams(rowLp);
+			Button back = new Button(this);
+			back.setLayoutParams(cellLp);
+			back.setOnClickListener(new View.OnClickListener() {		
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
+			TR.addView(back);
+			maintable.addView(TR);
+			back.setText("Back");
+		}
 	}
 	
 }
