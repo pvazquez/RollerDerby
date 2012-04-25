@@ -30,9 +30,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class SecondScreenActivity extends Activity {
-	
-	ArrayList<Information> info = new ArrayList<Information>();
-	
+		
 	public void onCreate(Bundle savedInstanceState)
 	{
 		//gets the information from the website using a URI connection
@@ -44,6 +42,7 @@ public class SecondScreenActivity extends Activity {
 		URI uri = (URI) extras.get("URI");
 		
 		ArrayList<String> al = null;
+		ArrayList<Information> info = new ArrayList<Information>();
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request = new HttpGet();
 		try {
@@ -92,8 +91,14 @@ public class SecondScreenActivity extends Activity {
 			e.printStackTrace();
 		}
 		
+		displayTable(info, extras);
+	}
+
+	private void displayTable(ArrayList<Information> info, Bundle extras) {
 		
-		/* Layout of the screen*/
+		String type = extras.getString("page");
+		
+		/* Layout of the screen */
 		FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
 		        ViewGroup.LayoutParams.FILL_PARENT,
 		        ViewGroup.LayoutParams.FILL_PARENT);
@@ -138,7 +143,7 @@ public class SecondScreenActivity extends Activity {
             for(String key: info.get(i).getKeys())
             {
             	String z = info.get(i).getData(key);
-            	if(count == 0)
+            	if(count == 0 && type.equals("bouts"))
             	{
             		Button b = new Button(this);
             		b.setLayoutParams(cellLp);
@@ -179,7 +184,10 @@ public class SecondScreenActivity extends Activity {
 		TR.addView(back);
 		maintable.addView(TR);
 		back.setText("Back");
+		
 	}
 	
 }
+
+
 

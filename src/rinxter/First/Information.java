@@ -15,10 +15,7 @@ public class Information {
 	public Information(JSONObject data) throws JSONException
 	{
 
-<<<<<<< HEAD
-=======
 		//connecting to the JSON server on website
->>>>>>> 38b0d81ab23f247d12bebe2dbb867e8861fd1faf
 		JSONArray info_name = data.names();
 		JSONArray info_data = data.toJSONArray(info_name);
 		
