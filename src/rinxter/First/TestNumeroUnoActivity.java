@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class TestNumeroUnoActivity extends Activity {
 	int season;
+	int currentSeason;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class TestNumeroUnoActivity extends Activity {
         /* Obtain Current Year */
         Calendar c = Calendar.getInstance();
         season = c.get(Calendar.YEAR);
+        currentSeason = c.get(Calendar.YEAR);
         TextView seasonTxt = (TextView) findViewById(R.id.seasonTV);
         seasonTxt.setText(String.valueOf(season) + " Season");
         
@@ -86,15 +88,15 @@ public class TestNumeroUnoActivity extends Activity {
 		}
     	return true;
     }
-
+	
 	private void chooseSeason() {
 		AlertDialog.Builder alb = new AlertDialog.Builder(this);
 		alb.setTitle("Select Season");
-		int size = season - 1990;
+		int size = currentSeason - 2010;
 		final String choices[] = new String[size+1];
-		for(int i = 1990; i <= season; i++)
+		for(int i = 2010; i <= currentSeason; i++)
 		{
-			choices[i - 1990] = String.valueOf(i);
+			choices[i - 2010] = String.valueOf(i);
 		}
 		alb.setItems(choices, new DialogInterface.OnClickListener() {
 			@Override
