@@ -14,6 +14,7 @@ public class boutClickListener implements View.OnClickListener {
 	private Context context = null;
 	private Activity activity = null;
 	
+	//gets the bouts from each season
 	public boutClickListener(String boutId, Context c, Activity a) throws URISyntaxException
 	{
 		boutURI = new URI("http://rinxter.net/wftda/ds?type=bout&boutId=" + boutId);
@@ -21,6 +22,7 @@ public class boutClickListener implements View.OnClickListener {
 		activity = a;
 	}
 	
+	//
 	@Override
 	public void onClick(View v) {
 		Intent i = new Intent(context, SecondScreenActivity.class);
