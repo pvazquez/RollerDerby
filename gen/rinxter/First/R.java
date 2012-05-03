@@ -15,16 +15,28 @@ public final class R {
         public static final int images=0x7f020001;
     }
     public static final class id {
-        public static final int bout_btn=0x7f050003;
-        public static final int leaguePic=0x7f050001;
-        public static final int maintable=0x7f050005;
-        public static final int seasonTV=0x7f050002;
-        public static final int team_btn=0x7f050004;
-        public static final int welcomeTV=0x7f050000;
+        public static final int back_btn=0x7f050001;
+        public static final int bout_btn=0x7f05000f;
+        public static final int iv_teamlogo1=0x7f050002;
+        public static final int iv_teamlogo2=0x7f050005;
+        public static final int leaguePic=0x7f05000d;
+        public static final int maintable=0x7f050000;
+        public static final int seasonTV=0x7f05000e;
+        public static final int team_btn=0x7f050010;
+        public static final int tv_date=0x7f050007;
+        public static final int tv_location=0x7f050008;
+        public static final int tv_results=0x7f050009;
+        public static final int tv_team1score=0x7f05000a;
+        public static final int tv_team2score=0x7f05000b;
+        public static final int tv_teamname1=0x7f050003;
+        public static final int tv_teamname2=0x7f050006;
+        public static final int versus=0x7f050004;
+        public static final int welcomeTV=0x7f05000c;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
-        public static final int screen2=0x7f030001;
+        public static final int boutlist=0x7f030000;
+        public static final int boutscreen=0x7f030001;
+        public static final int main=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

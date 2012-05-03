@@ -25,7 +25,9 @@ public class Information {
 			String data_s = info_data.getString(i);
 			data_s = data_s.replace("<b>", "");
 			data_s = data_s.replace("</b>", "");
-			x.put(name,data_s);
+			if(null == data_s || data_s.equals(""));
+			else
+				x.put(name,data_s);
 		}
 	}
 	
@@ -39,5 +41,7 @@ public class Information {
 	{
 		return x.keySet();
 	}
+	
+
 
 }

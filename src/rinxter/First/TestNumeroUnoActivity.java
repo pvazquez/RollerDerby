@@ -22,6 +22,7 @@ public class TestNumeroUnoActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		super.setRequestedOrientation(0);
         setContentView(rinxter.First.R.layout.main);
         
         /* Obtain Current Year */
@@ -41,7 +42,7 @@ public class TestNumeroUnoActivity extends Activity {
 				} catch (URISyntaxException e) {
 					e.printStackTrace();
 				}
-				Intent i =  new Intent(getApplicationContext(), SecondScreenActivity.class);
+				Intent i =  new Intent(getApplicationContext(), BoutListActivity.class);
 				i.putExtra("URI", bouts);
 				i.putExtra("page", "bouts");
 				startActivity(i);
@@ -60,7 +61,7 @@ public class TestNumeroUnoActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				Intent i = new Intent(getApplicationContext(), SecondScreenActivity.class);
+				Intent i = new Intent(getApplicationContext(), TeamListActivity.class);
 				i.putExtra("URI", teams);
 				i.putExtra("page", "teams");
 				startActivity(i);
@@ -88,11 +89,8 @@ public class TestNumeroUnoActivity extends Activity {
 		}
     	return true;
     }
-<<<<<<< HEAD
-	
-=======
+    
 	//selector for seasons of the teams' bouts
->>>>>>> 5de74ee29429317c6de15d66fbce307077613a44
 	private void chooseSeason() {
 		AlertDialog.Builder alb = new AlertDialog.Builder(this);
 		alb.setTitle("Select Season");

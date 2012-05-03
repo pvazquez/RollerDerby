@@ -22,7 +22,15 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name=".SecondScreenActivity"
+            android:name=".BoutListActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity 
+            android:name=".TeamListActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity 
+            android:name=".boutViewActivity"
             android:label="@string/app_name">
         </activity>
     </application>

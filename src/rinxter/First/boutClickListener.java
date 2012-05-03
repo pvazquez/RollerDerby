@@ -23,9 +23,9 @@ public class boutClickListener implements View.OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		Intent i = new Intent(context, SecondScreenActivity.class);
+		Intent i = new Intent(context, boutViewActivity.class);
 		i.putExtra("URI", boutURI);
-		i.putExtra("page", "single");
+		i.putExtra("page", "singleBout");
 		activity.startActivity(i);
 	}
 
